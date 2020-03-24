@@ -1,13 +1,9 @@
 <template>
-    <div>
-       cart
-    </div>
+    <div>catheader</div>
 </template>
 <script>
 export default {
-    components:{
-     
-    }
+    
 }
 </script>
 <style scoped>
