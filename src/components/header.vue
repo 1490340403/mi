@@ -204,6 +204,7 @@ export default {
                    opacity: 0;
                    transition: all .3s;
                    overflow: hidden;
+                   background:#fff;
                    li{
                        position: relative;
                        flex:1;
