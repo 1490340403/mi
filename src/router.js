@@ -10,6 +10,7 @@ import OrderConfirm from './page/orderConfirm.vue'
 import OrderList from './page/orderList.vue'
 import OrderPay from './page/orderPay.vue'
 import Apipay from './page/alipay.vue'
+import Login from './page/login.vue'
 Vue.use(Router)
 export default new Router({
    routes:[{
@@ -56,6 +57,10 @@ export default new Router({
         name:"Cart",
         component:Cart
     }]
+   },{
+       path:'/login',
+       name:'login',
+       component:Login
    }
 ]
 })
