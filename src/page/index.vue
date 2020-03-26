@@ -1,8 +1,14 @@
 <template>
-    <div>index</div>
+    <div>
+        <service/>
+    </div>
 </template>
 <script>
+import Service from '../components/service.vue'
 export default {
+  components:{
+    Service
+  },
     mounted(){
 
     },
