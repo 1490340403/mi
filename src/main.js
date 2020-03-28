@@ -3,6 +3,8 @@ import App from './App.vue'
 import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
+import vueSwiper from 'vue-awesome-swiper'  //引入vue-awesome-swiper
+import 'swiper/dist/css/swiper.css'  //引入样式
 const mock=false
 if(mock){
   require('./mock/index.js')
@@ -23,6 +25,7 @@ axios.interceptors.response.use(function (response) {
   alert('错误')
   return Promise.reject(error);
 });
+Vue.use(vueSwiper)
 Vue.use(VueAxios,axios)
 Vue.config.productionTip = false
 
