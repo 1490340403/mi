@@ -47,6 +47,32 @@
               <div class="swiper-button-next" slot="button-next"></div>
             </swiper>
         </div>
+        <ul class="ads">
+            <li v-for="(item,index) in adsList" :key="index" @click="goDetail(item.id)">
+                <img :src="item.img"/>
+            </li>
+        </ul>
+        <div class="banner" @click="goDetail(30)">
+            <img src="/imgs/banner-1.png"/>
+        </div>
+        <div class="contentBox">
+            <h2>手机</h2>
+            <div class="content">
+                <div class="content-left" @click="goDetail(35)">
+                    <img src="/imgs/mix-alpha.jpg"/>
+                </div>
+                <div class="content-right">
+                    <ul>
+                        <li v-for="(item,index) in phoneList" :key="index">
+                            <img :src="item.mainImage"/>
+                            <div class="name">{{item.name}}</div>
+                            <div class="subtitle">{{item.subtitle}}</div>
+                            <div class="price" @clicl="addCar(item.id)">{{item.price}}元</div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
         <service/>
     </div>
 </template>
@@ -71,12 +97,28 @@ export default {
   // this.axios.get('/user/login').then(res=>{
   //     console.log(res)
   // })
+  this.init()
 },
  methods:{
      goDetail(id){
          this.$router.push('/detail/'+id)
+     },
+     init(){
+          this.axios.get('/products',{
+            params:{
+                categoryId:100012,
+                pageSize:14
+            }
+            }).then((res)=>{
+            res.list = res.list.slice(6,14);
+            this.phoneList = [...res.list.slice(0,4),...res.list.slice(4,8)];
+        })
+     },
+     addCar(){
+         
      }
  },
+
  data() {
       return {
         swiperOption: {
@@ -153,7 +195,23 @@ export default {
                 title:'移动4G专区',
                 img:'/imgs/item-box-4.jpg'
             },
-        ]
+        ],
+        adsList:[
+          {
+            id:33,
+            img:'/imgs/ads/ads-1.png'
+          },{
+            id:48,
+            img:'/imgs/ads/ads-2.jpg'
+          },{
+            id:45,
+            img:'/imgs/ads/ads-3.png'
+          },{
+            id:47,
+            img:'/imgs/ads/ads-4.jpg'
+          }
+        ],
+        phoneList:[]
       }
     }
 }
@@ -247,6 +305,88 @@ export default {
             height:100%;
         }
     }
+  }
+  .ads{
+      width:100%;
+      display: flex;
+      margin:20px 0;
+      li{
+          width: 296px;
+          height: 167px;
+          margin-right:14px;
+          &:last-child{
+              margin-right:0;
+          }
+          img{
+              width: 296px;
+              height: 167px;
+          }
+      }
+  }
+  .banner{
+      width:100%;
+      height: 130x;
+      margin:20px 0;
+      img{
+          width:100%;
+          height:100px;
+      }
+  }
+  .contentBox{
+      .content{
+          display: flex;
+          background:#f5f5f5;
+          .content-left{
+              width: 224px;
+              height:619px;
+              img{
+                  width: 224px;
+                  height:619px;
+              }
+          }
+          .content-right{
+              width:986px;
+              margin-left:17px;
+              ul{
+                   display: flex;
+                   flex-wrap: wrap;
+                   li{
+                        width: 236px;
+                        height: 302px;
+                        background:#fff;
+                        margin-left:10px;
+                        margin-bottom:15px;
+                        text-align: center;
+                        img{
+                            width: 100%;
+                            height: 195px;
+                        }
+                        .name{
+                            font-size:16px;
+                            font-weight: bold;
+                            margin:10px 0;
+                        }
+                        .subtitle{
+                            color:#999;
+                            margin:10px 0;
+                        }
+                        .price{
+                            color:red;
+                            &:after{
+                                   display: inline-block;
+                                    width: 22px;
+                                    height: 22px;
+                                    background: url(/imgs/icon-cart-hover.png) no-repeat 50%;
+                                    background-size: contain;
+                                    content: " ";
+                                    margin-left: 5px;
+                                    vertical-align: middle;
+                                }
+                        }
+                    }
+              }   
+          }
+      }
   }
 }
 </style>
