@@ -6,7 +6,7 @@
 
 <script>
 
-
+import {mapActions} from 'vuex'
 export default {
   name: 'App',
   data(){
@@ -21,12 +21,17 @@ export default {
     }
   },
   methods:{
+    ...mapActions(['storeUser','storeShopNum']),
     getUser(){
-      this.axios.get('/user').then(()=>{})
+      this.axios.get('/user').then((res)=>{
+        this.storeUser(res.username)
+      })
     },
     getSum(){
-      this.axios.get('/carts/products/sum').then(()=>{
-
+      this.axios.get('/carts/products/sum').then((res)=>{
+        //alert(res)
+        this.$store.dispatch('storeShopNum',res)
+       // this.storeShopNum(res)
       })
     }
   }

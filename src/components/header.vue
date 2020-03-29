@@ -16,7 +16,7 @@
                     <a href="javascript:;" v-if="username" @click="goOrderList">我的订单</a>
                     <a href="javascript:;" class="cart" @click="goCart">
                         <span class="icon-cart"></span>
-                        购物车(0)
+                        购物车({{shopNum}})
                     </a>
                 </div>
             </div>
@@ -52,13 +52,15 @@
     </div>
 </template>
 <script>
+import { mapState } from 'vuex'
 export default {
     data(){
         return{
             phoneList:[],
-            username:'8'
+            // username:'8'
         }
     },
+    computed:mapState(['shopNum','username']),
     created(){
         this.getProductList()
     },
