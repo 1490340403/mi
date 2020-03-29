@@ -1,4 +1,5 @@
 <template>
+<div class="box">
     <div class="container">
         <div class="bannerBox">
             <div class="nav-menu">
@@ -67,7 +68,7 @@
                             <img :src="item.mainImage"/>
                             <div class="name">{{item.name}}</div>
                             <div class="subtitle">{{item.subtitle}}</div>
-                            <div class="price" @clicl="addCar(item.id)">{{item.price}}元</div>
+                            <div class="price" @click="addCar(item.id)">{{item.price}}元</div>
                         </li>
                     </ul>
                 </div>
@@ -75,13 +76,24 @@
         </div>
         <service/>
     </div>
+    <commonPop 
+        :showPop="showPop" 
+        title="提示"
+        content='购买成功'
+        btn1="查看购物车"
+        @goCar="goCar"
+        @close="close"
+        />
+</div>
 </template>
 <script>
 
 import Service from '../components/service.vue'
+import commonPop from '../components/commonPop.vue'
 export default {
   components:{
-    Service
+    Service,
+    commonPop
   },
   mounted(){
 
@@ -115,7 +127,20 @@ export default {
         })
      },
      addCar(){
-         
+        //  this.axios.post('/carts',{
+        //      productId:id,
+        //     selected: true                                                                                                                                        
+        //  }).then(()=>{
+                                                                               
+        //  })
+         this.showPop=true;
+     },
+     goCar(){
+        
+         this.$router.push('/order/cart')
+     },
+     close(){
+         this.showPop=false;
      }
  },
 
@@ -211,12 +236,17 @@ export default {
             img:'/imgs/ads/ads-4.jpg'
           }
         ],
-        phoneList:[]
+        phoneList:[],
+        showPop:false
       }
     }
 }
 </script>
 <style scoped lang="scss">
+.box{
+    width:100vw;
+    min-height:100vh;
+}
 .container{
   width:1226px;
   margin:0 auto;
