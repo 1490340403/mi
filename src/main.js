@@ -4,6 +4,7 @@ import router from './router'
 import axios from 'axios'
 import VueAxios from 'vue-axios'
 import VueLazyload from 'vue-lazyload'
+import VueCookies from 'vue-cookie'
 import vueSwiper from 'vue-awesome-swiper'  //引入vue-awesome-swiper
 import 'swiper/dist/css/swiper.css'  //引入样式
 const mock=false
@@ -26,6 +27,7 @@ axios.interceptors.response.use(function (response) {
   alert('错误')
   return Promise.reject(error);
 });
+Vue.use(VueCookies)
 Vue.use(vueSwiper)
 Vue.use(VueAxios,axios)
 Vue.use(VueLazyload, {

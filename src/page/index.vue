@@ -126,13 +126,13 @@ export default {
             this.phoneList = [...res.list.slice(0,4),...res.list.slice(4,8)];
         })
      },
-     addCar(){
-        //  this.axios.post('/carts',{
-        //      productId:id,
-        //     selected: true                                                                                                                                        
-        //  }).then(()=>{
+     addCar(id){
+         this.axios.post('/carts',{
+             productId:id,
+             selected: true                                                                                                                                        
+         }).then(()=>{
                                                                                
-        //  })
+         })
          this.showPop=true;
      },
      goCar(){
