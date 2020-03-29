@@ -50,22 +50,22 @@
         </div>
         <ul class="ads">
             <li v-for="(item,index) in adsList" :key="index" @click="goDetail(item.id)">
-                <img :src="item.img"/>
+                <img v-lazy="item.img"/>
             </li>
         </ul>
         <div class="banner" @click="goDetail(30)">
-            <img src="/imgs/banner-1.png"/>
+            <img v-lazy=" '/imgs/banner-1.png' "/>
         </div>
         <div class="contentBox">
             <h2>手机</h2>
             <div class="content">
                 <div class="content-left" @click="goDetail(35)">
-                    <img src="/imgs/mix-alpha.jpg"/>
+                    <img v-lazy=" '/imgs/mix-alpha.jpg' "/>
                 </div>
                 <div class="content-right">
                     <ul>
                         <li v-for="(item,index) in phoneList" :key="index">
-                            <img :src="item.mainImage"/>
+                            <img v-lazy="item.mainImage"/>
                             <div class="name">{{item.name}}</div>
                             <div class="subtitle">{{item.subtitle}}</div>
                             <div class="price" @click="addCar(item.id)">{{item.price}}元</div>
