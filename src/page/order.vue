@@ -1,16 +1,17 @@
 <template>
     <div>
-        <CatHeader/>
         <router-view/>
+        <Service/>
         <Footer/>
     </div>
 </template>
 <script>
-import CatHeader from '../components/catHeader'
+
 import Footer from '../components/footer'
+import Service from '../components/service'
 export default {
     components:{
-        CatHeader,
+        Service,
         Footer
     }
 }

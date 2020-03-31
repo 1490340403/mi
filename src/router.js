@@ -7,7 +7,7 @@ import Product from './page/product.vue'
 import Cart from './page/cart.vue'
  import Order from './page/order.vue'
 import OrderConfirm from './page/orderConfirm.vue'
-import OrderList from './page/orderList.vue'
+//import OrderList from './page/orderList.vue'
 import OrderPay from './page/orderPay.vue'
 import Apipay from './page/alipay.vue'
 import Login from './page/login.vue'
@@ -36,11 +36,12 @@ export default new Router({
        path:'/order',
        name:'Order',
        component:Order,
+       redirect:'/order/cart',
        children:[{
-           path:'list',
-           name:'OrderList',
-           component:OrderList,
-       },{
+            path:'cart',
+            name:"Cart",
+            component:Cart
+        },{
            path:"confirm",
            name:'OrderConfirm',
            component:OrderConfirm
@@ -52,11 +53,7 @@ export default new Router({
            path:'apipay',
            name:"Apipay",
            component:Apipay
-       },{
-        path:'cart',
-        name:"Cart",
-        component:Cart
-    }]
+       }]
    },{
        path:'/login',
        name:'login',
