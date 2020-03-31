@@ -41,7 +41,7 @@
                 </ul>
             </div>
             <swiper class="swiper" :options="swiperOption">
-              <swiper-slide v-for="(item,index) in slideList" :key="index" @click="goDetail(item.id)">
+              <swiper-slide v-for="(item,index) in slideList" :key="index" @click="goPro(item.id)">
                 <img :src="item.img"/>
               </swiper-slide>
               <div class="swiper-button-prev" slot="button-prev"></div>
@@ -65,7 +65,7 @@
                 <div class="content-right">
                     <ul>
                         <li v-for="(item,index) in phoneList" :key="index">
-                            <img v-lazy="item.mainImage"/>
+                            <img v-lazy="item.mainImage"  @click="goPro(item.id)" />
                             <div class="name">{{item.name}}</div>
                             <div class="subtitle">{{item.subtitle}}</div>
                             <div class="price" @click="addCar(item.id)">{{item.price}}元</div>
@@ -136,11 +136,13 @@ export default {
          this.showPop=true;
      },
      goCar(){
-        
          this.$router.push('/order/cart')
      },
      close(){
          this.showPop=false;
+     },
+     goPro(id){
+         this.$router.push(`/product/${id}`)
      }
  },
 
