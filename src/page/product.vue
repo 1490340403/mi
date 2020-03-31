@@ -86,9 +86,9 @@ export default {
     width:100%;
     border-top: 1px solid #e5e5e5;
     .container{
-        width:1226px;
-        margin:0 auto;
-        line-height: 70px;
+        // width:1226px;
+        // margin:0 auto;
+        // position: relative;
         .btn{
             display: inline-block;
             width: 110px;

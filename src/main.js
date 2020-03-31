@@ -22,10 +22,9 @@ axios.interceptors.response.use(function (response) {
     window.location.href = '/#/login';
     return Promise.reject(res);
   }else{
-    alert(res.msg)
+    return Promise.reject(res);
   }
 }, function (error) {
-  alert('错误')
   return Promise.reject(error);
 });
 Vue.use(VueCookies)
