@@ -130,10 +130,11 @@ export default {
          this.axios.post('/carts',{
              productId:id,
              selected: true                                                                                                                                        
-         }).then(()=>{
-                                                                               
+         }).then((res)=>{
+             this.$store.dispatch('storeShopNum',res.cartTotalQuantity)
+            this.showPop=true;                                                                   
          })
-         this.showPop=true;
+         
      },
      goCar(){
          this.$router.push('/order/cart')
