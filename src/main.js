@@ -8,6 +8,9 @@ import VueCookies from 'vue-cookie'
 import store from './store'
 import vueSwiper from 'vue-awesome-swiper'  //引入vue-awesome-swiper
 import 'swiper/dist/css/swiper.css'  //引入样式
+import { Message} from 'element-ui';
+Vue.prototype.$message = Message;
+
 const mock=false
 if(mock){
   require('./mock/index.js')

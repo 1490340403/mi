@@ -11,7 +11,7 @@
                 <div class="header-right">
                     <a href="javascript:;" v-if="username">{{username}}</a>
                     <!-- <a href="javascript:;"></a> -->
-                    <a href="javascript:;" v-if="username">退出</a>
+                    <a href="javascript:;" v-if="username" @click="logyot">退出</a>
                     <a href="javascript:;" v-if="!username" @click="goLogin">登陆</a>
                     <a href="javascript:;" v-if="username" @click="goOrderList">我的订单</a>
                     <a href="javascript:;" class="cart" @click="goCart">
@@ -53,6 +53,7 @@
 </template>
 <script>
 import { mapState } from 'vuex'
+
 export default {
     data(){
         return{
@@ -89,6 +90,17 @@ export default {
         },
         goCart(){
             this.$router.push('/order/cart')
+        },
+        logyot(){
+            this.axios.post('/user/logout').then(()=>{
+               this.$cookie.delete('userId')
+               this.$store.dispatch('storeUser','')
+               this.$store.dispatch('storeShopNum',0)
+               this.$message({
+                   message:'退出成功',
+                   type:'success'
+               })
+            })
         }
     }
 }
