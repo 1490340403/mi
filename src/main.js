@@ -9,6 +9,7 @@ import store from './store'
 import vueSwiper from 'vue-awesome-swiper'  //引入vue-awesome-swiper
 import 'swiper/dist/css/swiper.css'  //引入样式
 import { Message} from 'element-ui';
+//axios.defaults.withCredentials = true; //让ajax携带cookie
 Vue.prototype.$message = Message;
 
 const mock=false

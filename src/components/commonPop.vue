@@ -1,12 +1,14 @@
 <template >
     <transition name="slide">
         <div class="popBox" v-if="showPop">
-            <div class="pop">
+            <div class="pop" >
                 <div class="popHeader">{{title}}
                     <div class="close" @click="close"></div>
                 </div>
-                <div class="popBody">
-                    {{content}}
+                <div  class="popBody" :class="{big:big}">
+                    <slot name="body">
+                        
+                    </slot>
                 </div>
                 <div class="popFooter">
                     <div class="btn1" @click="goCar">{{btn1}}</div>
@@ -23,10 +25,7 @@ export default {
            type:Boolean,
            default:false
        },
-       content:{
-           type:String,
-           default:''
-       },
+      
        title:{
            type:String,
            default:''
@@ -34,7 +33,14 @@ export default {
        btn1:{
            type:String,
            default:''
+       },
+       big:{
+           type:Boolean,
+           default:false
        }
+   },
+   created(){
+       
    },
    methods:{
        goCar(){
@@ -69,7 +75,6 @@ export default {
     }
     .pop{
         width:660px;
-        height:257px;
         background: #fff;
         position: absolute;
         left:50%;
@@ -102,7 +107,11 @@ export default {
         }
         .popBody{
              padding: 42px 40px 54px;
+             box-sizing: border-box;
              font-size: 14px;
+             &.big{
+                height:350px;
+            }
         }
         .popFooter{
             height: 82px;

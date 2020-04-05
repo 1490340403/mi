@@ -79,11 +79,15 @@
     <commonPop 
         :showPop="showPop" 
         title="提示"
-        content='购买成功'
+       
         btn1="查看购物车"
         @goCar="goCar"
         @close="close"
-        />
+        >
+        <template v-slot:body>
+            <div>购买成功</div>
+        </template>
+    </commonPop>
 </div>
 </template>
 <script>
