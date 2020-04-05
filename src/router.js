@@ -7,7 +7,7 @@ import Product from './page/product.vue'
 import Cart from './page/cart.vue'
  import Order from './page/order.vue'
 import OrderConfirm from './page/orderConfirm.vue'
-//import OrderList from './page/orderList.vue'
+import OrderList from './page/list.vue'
 import OrderPay from './page/orderPay.vue'
 import Apipay from './page/alipay.vue'
 import Login from './page/login.vue'
@@ -53,6 +53,10 @@ export default new Router({
            path:'apipay',
            name:"Apipay",
            component:Apipay
+       },{
+           path:'list',
+           name:'List',
+           component:OrderList
        }]
    },{
        path:'/login',

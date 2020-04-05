@@ -5,7 +5,7 @@
                 <div class="popHeader">{{title}}
                     <div class="close" @click="close"></div>
                 </div>
-                <div  class="popBody" :class="{big:big}">
+                <div  class="popBody" :class="{'bigs':big}">
                     <slot name="body">
                         
                     </slot>
@@ -109,7 +109,7 @@ export default {
              padding: 42px 40px 54px;
              box-sizing: border-box;
              font-size: 14px;
-             &.big{
+             &.bigs{
                 height:350px;
             }
         }
