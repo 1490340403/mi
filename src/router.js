@@ -1,67 +1,67 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import Index from './page/index.vue'
-import Home from './page/home.vue'
-import Detail from './page/detail.vue'
-import Product from './page/product.vue'
-import Cart from './page/cart.vue'
- import Order from './page/order.vue'
-import OrderConfirm from './page/orderConfirm.vue'
-import OrderList from './page/list.vue'
-import OrderPay from './page/orderPay.vue'
-import Apipay from './page/alipay.vue'
-import Login from './page/login.vue'
+//import Index from './page/index.vue'
+//import Home from './page/home.vue'
+//import Detail from './page/detail.vue'
+//import Product from './page/product.vue'
+//import Cart from './page/cart.vue'
+// import Order from './page/order.vue'
+//import OrderConfirm from './page/orderConfirm.vue'
+//import OrderList from './page/list.vue'
+//import OrderPay from './page/orderPay.vue'
+//import Apipay from './page/alipay.vue'
+//import Login from './page/login.vue'
 Vue.use(Router)
 export default new Router({
    routes:[{
        path:'/',
        name:'home',
-       component:Home,
+       component:()=>import('./page/home.vue'),
        redirect:'/index',
        children:[{
            path:'/index',
            name:'Index',
-           component:Index
+           component:()=>import('./page/index.vue')
        },{
             path:'/detail/:id',
             name:'Detail',
-            component:Detail
+            component:()=>import('./page/detail.vue')
        },{
             path:'/product/:id',
             name:'Product',
-            component:Product
+            component:()=>import('./page/product.vue')
        }
     ]
    },{
        path:'/order',
        name:'Order',
-       component:Order,
+       component:()=>import('./page/order.vue'),
        redirect:'/order/cart',
        children:[{
             path:'cart',
             name:"Cart",
-            component:Cart
+            component:()=>import('./page/cart.vue')
         },{
            path:"confirm",
            name:'OrderConfirm',
-           component:OrderConfirm
+           component:()=>import('./page/orderConfirm.vue')
        },{
            path:'pay',
            name:'OrderPay',
-           component:OrderPay
+           component:()=>import('./page/orderPay.vue')
        },{
            path:'apipay',
            name:"Apipay",
-           component:Apipay
+           component:()=>import('./page/alipay.vue')
        },{
            path:'list',
            name:'List',
-           component:OrderList
+           component:()=>import('./page/list.vue')
        }]
    },{
        path:'/login',
        name:'login',
-       component:Login
+       component:()=>import('./page/login.vue')
    }
 ]
 })
