@@ -16,8 +16,8 @@ module.exports = {
   // outputDir:'dist',
   // indexPath:'index2.html',
   // lintOnSave:false,
-  productionSourceMap:true,
+  productionSourceMap:true,//打包加密
   chainWebpack:(config)=>{
-    config.plugins.delete('prefetch');
+    config.plugins.delete('prefetch');//移除预加载
   }
 }

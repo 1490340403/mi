@@ -2,7 +2,7 @@
     <div class="catheader">
         <div class="container">
             <div class="logo">
-                <div class="logoLeft"></div>
+                <a href="/#/index" class="logoLeft"></a>
             </div>
             <div class="title">
                 <a href="javasccript:;">{{title}}</a>
@@ -39,6 +39,7 @@ export default {
             .logoLeft{
                 width:110px;
                 height:55px;
+                display: block;
                 transition: margin 0.3s;
                 &:hover{
                         margin-left:-55px;
@@ -62,7 +63,7 @@ export default {
             }
         }
         .title{
-            margin-left:-450px;
+            margin-left:-200px;
             a{
                 font-size: 28px;
                 color: #333;

@@ -6,9 +6,9 @@
         </template>
     </CatHeader>
      <div class="wrapper">
-      <div class="container">
+      <div class="container" ref="bscroll">
         <div class="order-box"  >
-           <Loading v-if="loding"/>
+           <!-- <Loading v-if="loding"/> -->
           <div class="order" v-for="(item,index) in list" :key="index">
             <div class="order-title">
               <div class="item-info fl">
@@ -43,7 +43,7 @@
               </div>
             </div>
           </div>
-           <NoData v-if="noData"></NoData>
+           <!-- <NoData v-if="noData"></NoData> -->
            <!-- <div class="pagination" v-if="this.total>10">
             <el-pagination
                 background
@@ -52,14 +52,14 @@
                 :total="this.total">
               </el-pagination>
            </div> -->
-           <div class="paginations"  
+           <!-- <div class="paginations"  
               v-infinite-scroll="loadMore" 
               v-show="show"
               infinite-scroll-disabled="busy" 
               infinite-scroll-distance="410" 
            >
              <img src="/imgs/loading-svg/loading-spinning-bubbles.svg" alt="" >
-           </div>
+           </div> -->
         </div>
       </div>
     </div>
@@ -67,20 +67,21 @@
 </template>
 
 <script>
+import BScroll from 'better-scroll'
 import CatHeader from '../components/catHeader'
-import NoData from '../components/NoData'
-import Loading from '../components/Loading'
-import infiniteScroll from 'vue-infinite-scroll'
+//import NoData from '../components/NoData'
+//import Loading from '../components/Loading'
+// import infiniteScroll from 'vue-infinite-scroll'
 export default {
   name: 'app',
   components: {
     CatHeader,
-    NoData,
-    Loading
+    //NoData,
+  //  Loading
   },
-  directives: {
-    infiniteScroll
-  },
+  // directives: {
+ //   infiniteScroll
+ // },
   data(){
     return {
       pageSize:10,
@@ -96,6 +97,11 @@ export default {
   created(){
     this.getList()
   },
+  mounted() {            
+        setTimeout(()=>{
+            this.initScroll();
+        },2000)
+    },
   methods:{
     loadMore(){
       this.busy=true
@@ -104,7 +110,41 @@ export default {
         this.getLists()
       },500)
     },
+    getData(){
+      console.log(1);
+    },
+     initScroll(){
+        if(!this.$refs.bscroll){
+            return ;
+        }
+        this.scroll = new BScroll(this.$refs.bscroll,{
+            click:true,
+            scrollbar:true,
+            //上拉
+            pullUpLoad: {             
+                threshold: 50
+            },
+            
+            //下拉
+              pullDownRefresh:{
+                threshold:50,
+                stop:20
+            }
+            
+        });
+        //上拉
+        // this.scroll.on('pullingUp',()=>{
+        //     this.getData();
+        // })
+          
+        
+        this.scroll.on('pullingDown',()=>{
+        this.getData();
+        })
+        
+    },
     getLists(){
+      
        let {pageSize,pageNum}=this
        this.show=true
       let params={
@@ -129,6 +169,7 @@ export default {
       window.scroll(0,0);
     },
     getList(){
+      console.log(12);
       let {pageSize,pageNum}=this
       let params={
         pageNum,
@@ -152,8 +193,13 @@ export default {
     .wrapper{
       background-color: #f5f5f5;
       padding-top:33px;
+      //height:100vh;
+     // box-sizing: border-box;
+      //overflow: hidden;
       padding-bottom:110px;
       .order-box{
+        width:100%;
+        height:100%;
         .pagination{
           text-align: right;
         }
@@ -228,6 +274,7 @@ export default {
   .container{
     width:1226px;
     margin:0 auto;
+   
   }
   .fl{
     float:left;

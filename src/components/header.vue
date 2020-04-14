@@ -23,7 +23,7 @@
         </div>
         <div class="header">
             <div class="logo">
-                <div class="logoLeft"></div>
+                <a href="/#/index" class="logoLeft"></a>
             </div>
             <div class="nav-list">
                 <div class="menu-item">
@@ -160,6 +160,7 @@ export default {
             .logoLeft{
                 width:110px;
                 height:55px;
+                display: inline-block;
                 transition: margin 0.3s;
                 &:hover{
                         margin-left:-55px;
