@@ -22,7 +22,7 @@ export default {
     ...mapActions(['storeUser','storeShopNum']),
     getUser(){
       this.axios.get('/user').then((res)=>{
-        console.log('eeee')
+        console.log('eeee1')
         this.storeUser(res.username)
       })
     },
