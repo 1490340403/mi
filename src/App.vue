@@ -23,6 +23,8 @@ export default {
     getUser(){
       this.axios.get('/user').then((res)=>{
         console.log('eeee1')
+        console.log('eeee')
+         console.log('eeee3')
         this.storeUser(res.username)
       })
     },
