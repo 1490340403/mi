@@ -22,6 +22,7 @@ export default {
     ...mapActions(['storeUser','storeShopNum']),
     getUser(){
       this.axios.get('/user').then((res)=>{
+        console.log('eeee')
         this.storeUser(res.username)
       })
     },
